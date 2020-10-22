@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/contact_book/">Home</router-link>
+      <router-link to="/contact_book/" v-show="this.$route.name!='Contacts Home'">
+        <h1 class='nav_title'>All contacts</h1>
+      </router-link>
     </div>
     <router-view/>
   </div>
@@ -9,9 +11,7 @@
 
 <script>
 export default {
-  name: 'App',
-  components: {
-  }
+  name: 'App'
 }
 </script>
 
@@ -23,5 +23,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+a:hover{
+  color:#2c3e50;
+  text-decoration: underline;
 }
 </style>

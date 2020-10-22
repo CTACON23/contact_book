@@ -1,3 +1,8 @@
+<!--
+    Page with all contacts
+-->
+
+
 <template>
     <div class="main">
         <ContactList/>

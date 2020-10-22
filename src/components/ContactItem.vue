@@ -1,12 +1,13 @@
 <template>
     <div class="contact_item">
+        {{/*show only required field in main page (ContactHome)*/}}
         <div  v-for="(contactField, index) in contactFields.slice(0,2)" :key="index">
             <h5>{{contactField.nameField}}: </h5>
             <h5>{{contactField.valueField}}</h5>
         </div>
         <div>
            <button @click.stop="confirmDelete = true" class="contact_add_button contact_add_close">Delete</button>
-           
+           {{/*confirm delete template*/}}
            <template v-if="confirmDelete">
                 <div class="contact_delete" @click.stop>
                     <span class="confirm_delete__text">Delete contact?</span>
@@ -16,6 +17,7 @@
                     </div>
                 </div>
             </template>
+            {{/**/}}
         </div>
         <button class="contact_add_button" @click="detailPage">Detail</button>
     </div>
@@ -58,7 +60,7 @@ export default {
         flex-direction: column;
         position: relative;
         place-content: center;
-        border:1px solid green;
+        border:3px solid rgba(13, 85, 13, 0.479);
     }
     .contact_item>div{
         display: flex;

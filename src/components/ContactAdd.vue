@@ -44,11 +44,11 @@ export default {
             }
             const newContact = [
                 {
-                    nameField: 'name',
+                    nameField: 'Name',
                     valueField: this.nameValue,
                 },
                 {
-                    nameField: 'mobile',
+                    nameField: 'Mobile',
                     valueField: this.mobileValue,
                 }
             ];

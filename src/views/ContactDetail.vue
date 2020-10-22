@@ -1,8 +1,16 @@
+<!-- 
+    Detail page
+-->
+
 <template>
     <div class="contact_item">
+        
+        {{/*using a loop - display fields*/}}
         <div v-for="(field,index) in contactDetailInfo" :key="index">
             <ContactField :field="field" :index="index"/>
         </div>
+        
+        {{/*onClick 'Add field' -- show inputs*/}}
         <template v-if='addFieldClicked'>
              <div class="contact_item__field_input">
                 <input id='nameField' type="text" ref="nameField" @input="warningField=''">
@@ -10,13 +18,16 @@
                 <input id='valueField' type="text" ref="valueField" @input="warningField=''">
                 <label v-if="warningField==='value' || warningField==='both'" class="contact_item__warning"  for="valueField">Field is required</label>
                 <div class="contact_item__field_buttons">
-                        <button @click="addField">Save</button>
-                        <button @click="addFieldClicked=!addFieldClicked">Cancel</button>
+                        <button class="contact_add_button" @click="addField">Save</button>
+                        <button class="contact_add_button contact_add_close" @click="addFieldClicked=!addFieldClicked" >Cancel</button>
                 </div>
             </div>
         </template>
-        <button v-show="!addFieldClicked" @click="addFieldClicked=!addFieldClicked">Add field</button>
-        <button v-show="operations.length!=0" @click="stepBack">Step Back</button>
+        <button class="contact_add_button large" v-show="!addFieldClicked" @click="addFieldClicked=!addFieldClicked">Add field</button>
+
+        {{/*if operationStack have length -- 'Step Back' is shown*/}}
+
+        <button class="contact_add_button contact_add_close large" v-show="operations.length!=0" @click="stepBack">Step Back</button>
     </div>
 </template>
 
@@ -45,6 +56,18 @@ export default {
     methods:{
         ...mapMutations('contact',['addFieldContact','deleteFieldContact','setOperationStack']),
        stepBack(){
+           /*
+            using operationStack we looking for last item,
+            and depending  on the operationName - making 'reverse' operation
+
+            'delete' = making add
+            'add' = making delete
+            'edit' = making add (couse we replace new value by old one)
+
+            after clicking and making operation we need go to next operation by
+            doing 'pop'
+
+           */
            const lastOperation = this.operations[this.operations.length-1]
            const newField = {
                    id:this.$route.params.id-1,
@@ -62,6 +85,13 @@ export default {
            }
            this.operations.pop()
        },
+
+        /*
+            for adding field , we need to check inputs field values existing;
+            after that create newField, push to operationStack new operation
+            and using vuex mutation - add field 
+        */
+
        addField(){
             if(!this.$refs.valueField.value && !this.$refs.nameField.value){
                 return this.warningField = 'both'
@@ -89,6 +119,13 @@ export default {
 </script>
 
 <style scoped>
+    .contact_add_button.large{
+        width: 50%;
+        font-size: 1.3em;
+    }
+    .contact_add_button{
+        width: auto;
+    }
     .contact_item{
         margin: 0 auto;
         height: auto;
@@ -97,6 +134,7 @@ export default {
         display: flex;
         flex-direction: column;
         place-items: center;
+        background-color:rgba(13, 85, 13, 0.1)
     }
     .contact_item__field_input>*,.contact_item__field_buttons>*{
         margin: 2%;

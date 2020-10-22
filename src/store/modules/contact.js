@@ -4,12 +4,12 @@ export default {
         contacts:[
             [
                 {
-                    nameField:'name',
+                    nameField:'Name',
                     valueField:'Andrew'
                 },
                 {
-                    nameField: 'mobile',
-                    valueField: '9998887777',
+                    nameField: 'Mobile',
+                    valueField: '1111111111111',
                 },
                 {
                     nameField: 'email',
@@ -19,12 +19,12 @@ export default {
             ],
             [
                 {
-                    nameField:'name',
+                    nameField:'Name',
                     valueField:'Victoria'
                 },
                 {
-                    nameField: 'mobile',
-                    valueField: '9998887777',
+                    nameField: 'Mobile',
+                    valueField: '33333333333',
                 },
                 {
                     nameField: 'email',
@@ -52,7 +52,6 @@ export default {
             }
         },
         addFieldContact(state,newField){
-            console.log(newField)
             if(newField.index && !newField.edit){
                 state.contacts[newField.id].splice(newField.index,0,{nameField:newField.nameField,valueField:newField.valueField})
             }else if(newField.edit){
