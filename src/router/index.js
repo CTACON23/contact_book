@@ -9,12 +9,12 @@ export default new Router({
     mode:'history',
     routes:[
         {
-            path:'/',
+            path:'/contact_book/',
             name: 'Contacts Home',
             component: ContactHome
         },
         {
-            path:'/:id',
+            path:'/contact_book/:id',
             name:'Contact Detail',
             component: ContactDetail
         }
