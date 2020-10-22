@@ -55,7 +55,7 @@ export default {
     .contact_item{
         margin: 3%;
         height: 200px;
-        width: 15%;
+        width: 250px;
         display: flex;
         flex-direction: column;
         position: relative;
