@@ -39,7 +39,7 @@ export default {
     methods:{
         ...mapMutations('contact',['deleteContact']),
         detailPage() {
-            this.$router.push('/' + (this.index + 1));
+            this.$router.push('/contact_book/' + (this.index + 1));
         },
         removeContact(){
             this.deleteContact(this.index)
